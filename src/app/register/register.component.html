@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+    class="form-signin"
+  >
+    <h1 class="heading">Registration Form</h1>
+    <img
+      id="pic"
+      class="img img-responsive img-circle"
+      src="/assets/login.gif"
+    />
+    <div class="form-group">
+      <div class="form-group">
+        <input
+          [class.is-invalid]="email.invalid && email.touched"
+          type="text"
+          formControlName="email"
+          class="form-control"
+          placeholder="Email Address"
+        />
+        <div *ngIf="email.invalid && email.touched">
+          <small class="text-danger" *ngIf="email.errors?.required"
+            >Email is required</small
+          >
+          <small class="text-danger" *ngIf="email.errors?.minlength"
+            >Email must be at least 3 characters</small
+          >
+          <small class="text-danger" *ngIf="email.errors?.patternInvalid"
+            >Email is invalid.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          [class.is-invalid]="password.invalid && password.touched"
+          formControlName="password"
+          class="form-control"
+          placeholder="Password"
+        />
+        <div *ngIf="password.invalid && password.touched">
+          <small class="text-danger" *ngIf="password.errors?.required"
+            >Password is required</small
+          >
+          <small class="text-danger" *ngIf="password.errors?.minlength"
+            >Password must be at least 8 characters</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          [class.is-invalid]="name.invalid && name.touched"
+          formControlName="name"
+          class="form-control"
+          placeholder="full Name"
+        />
+        <div *ngIf="name.invalid && name.touched">
+          <small class="text-danger" *ngIf="name.errors?.required"
+            >Name is required</small
+          >
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Phone</label>
+        <input
+          type="text"
+          [class.is-invalid]="phone.invalid && phone.touched"
+          formControlName="phone"
+          class="form-control"
+        />
+        <div *ngIf="phone.invalid && phone.touched">
+          <small class="text-danger" *ngIf="phone.errors?.required"
+            >Phone is required</small
+          >
+          <small class="text-danger" *ngIf="phone.errors?.minlength"
+            >Phone is not valid</small
+          >
+        </div>
+      </div> -->
+    </div>
+
+    <button
+      class="btn btn-primary"
+      [disabled]="!registrationForm.valid"
+      type="submit"
+    >
+      Register
+    </button>
+  </form>
+</div>
